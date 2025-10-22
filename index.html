@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Barbearia dos Cria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">Barbearia dos Cria</div>
+      <button class="btn" id="open-admin">Entrar (Admin)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img src="assets/logo.jpeg" alt="Logo Barbearia dos Cria" class="hero-logo">
+      <h1>Barbearia dos Cria</h1>
+      <p class="since">Desde 2021</p>
+      <button class="cta" id="scroll-to-book">Agendar Agora</button>
+    </section>
+
+    <section id="services" class="panel">
+      <h2>Serviços</h2>
+      <div class="cards">
+        <div class="card"><h3>Corte</h3><p>R$25,00</p></div>
+        <div class="card"><h3>Barba</h3><p>R$20,00</p></div>
+        <div class="card"><h3>Sobrancelha</h3><p>R$10,00</p></div>
+        <div class="card"><h3>Pezinho</h3><p>R$10,00</p></div>
+        <div class="card"><h3>Bigode</h3><p>R$5,00</p></div>
+        <div class="card"><h3>Cavanhaque</h3><p>R$15,00</p></div>
+        <div class="card"><h3>Freestyle</h3><p>R$10,00</p></div>
+        <div class="card"><h3>Nevou</h3><p>R$80,00</p></div>
+        <div class="card"><h3>Luzes</h3><p>R$65,00</p></div>
+        <div class="card"><h3>Reflexo</h3><p>R$80,00</p></div>
+        <div class="card"><h3>Tintura</h3><p>R$25,00</p></div>
+        <div class="card"><h3>Colorido</h3><p>R$70,00</p></div>
+        <div class="card"><h3>Pigmentação</h3><p>R$10,00</p></div>
+      </div>
+    </section>
+
+    <section id="plans" class="panel">
+      <h2>Planos Mensais</h2>
+      <div class="plans">
+        <div class="plan"><h3>Corte</h3><p>R$100,00</p></div>
+        <div class="plan"><h3>Corte + Sobrancelha + Pigmentação</h3><p>R$120,00</p></div>
+        <div class="plan"><h3>Corte + Sobrancelha</h3><p>R$110,00</p></div>
+        <div class="plan"><h3>Corte + Barba + Sobrancelha</h3><p>R$150,00</p></div>
+      </div>
+    </section>
+
+    <section id="barbers" class="panel">
+      <h2>Barbeiros</h2>
+      <div id="barbers-list" class="barbers-list">
+        <!-- list populated from admin -->
+      </div>
+    </section>
+
+    <section id="booking" class="panel">
+      <h2>Agendamento</h2>
+      <div class="booking-box">
+        <label>Serviço</label>
+        <select id="service-select"></select>
+
+        <label>Barbeiro</label>
+        <select id="barber-select"></select>
+
+        <label>Data</label>
+        <input type="date" id="date-select" min="">
+
+        <label>Horário</label>
+        <select id="time-select"></select>
+
+        <button id="confirm-book" class="btn">Confirmar Agendamento</button>
+        <div id="booking-msg" class="msg"></div>
+      </div>
+    </section>
+
+    <section id="location" class="panel">
+      <h2>Localização</h2>
+      <p>Rua José Lins do Rêgo, 1049 - Tupi, CEP 31842-350</p>
+      <div class="map-wrapper">
+        <!-- Google Maps embed (uses iframe so no API key needed) -->
+        <iframe
+          src="https://www.google.com/maps?q=Rua+Jos%C3%A9+Lins+do+R%C3%AAgo,+1049+Tupi+31842350&output=embed"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=Rua+Jos%C3%A9+Lins+do+R%C3%AAgo+1049+Tupi+31842350" target="_blank" class="link">Ver no Google Maps</a></p>
+    </section>
+
+    <section id="contact" class="panel">
+      <h2>Contato</h2>
+      <p>WhatsApp: <a href="https://wa.me/5531990819093" target="_blank"> (31) 99081‑9093</a></p>
+      <p>Instagram e barbeiros serão adicionados manualmente pelo admin.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© Barbearia dos Cria — Desde 2021</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

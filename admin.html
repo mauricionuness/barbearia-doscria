@@ -1,0 +1,171 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Barbearia dos Cria</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-wrap{max-width:900px;margin:24px auto;padding:18px;background:#fff;border-radius:10px}
+    label{display:block;margin-top:8px;font-weight:600}
+    input[type=text], textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #ddd}
+    .small{display:flex;gap:8px;align-items:center}
+    .list-admin{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+    .admin-item{padding:8px;border-radius:8px;background:#f6f6f6;border:1px solid #eee}
+    .danger{background:#ffefef}
+  </style>
+</head>
+<body>
+  <div class="admin-wrap" id="admin-wrap">
+    <h1>Painel Administrativo — Barbearia dos Cria</h1>
+    <div id="login-box">
+      <label>Senha de administrador</label>
+      <input type="password" id="admin-pw">
+      <button id="login-btn" class="btn">Entrar</button>
+      <p class="note">Senha padrão: <strong>admin2025</strong></p>
+    </div>
+
+    <div id="admin-area" style="display:none">
+      <button id="logout" class="btn">Sair</button>
+      <h2>Barbeiros</h2>
+      <label>Nome</label><input type="text" id="barber-name">
+      <label>Descrição</label><textarea id="barber-desc"></textarea>
+      <div class="small"><label style="margin-right:8px">Ativo</label><input type="checkbox" id="barber-active" checked></div>
+      <button id="add-barber" class="btn">Adicionar Barbeiro</button>
+
+      <div class="list-admin" id="admin-barbers"></div>
+
+      <h2>Configurações do Site</h2>
+      <label>Horário de funcionamento (ex: 08-20)</label>
+      <input type="text" id="work-hours" placeholder="08-20">
+      <label>Dias atendidos (números 0-6, separados por vírgula; 0=domingo)</label>
+      <input type="text" id="work-days" placeholder="1,2,3,4,5,6">
+      <button id="save-config" class="btn">Salvar Configurações</button>
+
+      <h2>Agendamentos</h2>
+      <div id="bookings-list"></div>
+
+      <h3>Exportar / Importar Dados</h3>
+      <button id="export-data" class="btn">Exportar JSON</button>
+      <input type="file" id="import-file">
+      <button id="import-data" class="btn">Importar JSON</button>
+      <p class="note">Use para backup e restauração do site (localStorage).</p>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const ADMIN_PW = 'admin2025';
+  const loginBox = document.getElementById('login-box');
+  const adminArea = document.getElementById('admin-area');
+  const loginBtn = document.getElementById('login-btn');
+  const logoutBtn = document.getElementById('logout');
+  const adminPw = document.getElementById('admin-pw');
+
+  function getBarbers(){ return JSON.parse(localStorage.getItem('bd_barbers')||'[]'); }
+  function setBarbers(arr){ localStorage.setItem('bd_barbers', JSON.stringify(arr)); renderAdminBarbers(); }
+
+  function getBookings(){ return JSON.parse(localStorage.getItem('bd_bookings')||'[]'); }
+  function setBookings(arr){ localStorage.setItem('bd_bookings', JSON.stringify(arr)); renderBookings(); }
+
+  function renderAdminBarbers(){
+    const container = document.getElementById('admin-barbers'); container.innerHTML='';
+    const arr = getBarbers();
+    arr.forEach(b=>{
+      const div = document.createElement('div'); div.className='admin-item';
+      div.innerHTML = `<strong>${b.name}</strong><div>${b.desc||''}</div><div style="margin-top:8px">
+        <button class="edit" data-id="${b.id}">Editar</button> <button class="del" data-id="${b.id}">Remover</button>
+      </div>`;
+      container.appendChild(div);
+    });
+    // attach events
+    container.querySelectorAll('.del').forEach(btn=> btn.onclick = function(){
+      const id = this.dataset.id;
+      const arr = getBarbers().filter(x=>x.id!==id);
+      setBarbers(arr);
+    });
+    container.querySelectorAll('.edit').forEach(btn=> btn.onclick = function(){
+      const id=this.dataset.id; const b = getBarbers().find(x=>x.id===id);
+      const name = prompt('Nome', b.name); if(!name) return;
+      const desc = prompt('Descrição', b.desc||'')||'';
+      const arr = getBarbers().map(x=> x.id===id? {...x,name,desc}: x );
+      setBarbers(arr);
+    });
+  }
+
+  function renderBookings(){
+    const container = document.getElementById('bookings-list'); container.innerHTML='';
+    const arr = getBookings();
+    if(arr.length===0){ container.innerHTML='<p>Nenhum agendamento.</p>'; return; }
+    arr.forEach(b=>{
+      const div = document.createElement('div'); div.className='admin-item';
+      div.innerHTML = `<strong>${b.service}</strong><div>Barbeiro: ${b.barberId}</div><div>Data: ${b.date} ${b.time}</div>
+        <div style="margin-top:8px"><button class="delb" data-id="${b.id}">Remover</button></div>`;
+      container.appendChild(div);
+    });
+    container.querySelectorAll('.delb').forEach(btn=> btn.onclick = function(){
+      const id=this.dataset.id; const arr = getBookings().filter(x=>x.id!==id); setBookings(arr);
+    });
+  }
+
+  // login
+  loginBtn.addEventListener('click', ()=>{
+    if(adminPw.value === ADMIN_PW){
+      loginBox.style.display='none'; adminArea.style.display='block';
+      renderAdminBarbers(); renderBookings();
+      // fill config inputs
+      const cfg = JSON.parse(localStorage.getItem('bd_config')||'{}');
+      document.getElementById('work-hours').value = cfg.hours||'08-20';
+      document.getElementById('work-days').value = (cfg.days||'1,2,3,4,5,6');
+    } else alert('Senha incorreta');
+  });
+
+  logoutBtn.addEventListener('click', ()=>{ adminArea.style.display='none'; loginBox.style.display='block'; adminPw.value=''; });
+
+  document.getElementById('add-barber').addEventListener('click', ()=>{
+    const name = document.getElementById('barber-name').value.trim();
+    const desc = document.getElementById('barber-desc').value.trim();
+    const active = document.getElementById('barber-active').checked;
+    if(!name){ alert('Nome obrigatório'); return; }
+    const arr = getBarbers();
+    const id = 'b'+Date.now();
+    arr.push({id,name,desc,active});
+    setBarbers(arr);
+    document.getElementById('barber-name').value=''; document.getElementById('barber-desc').value='';
+  });
+
+  document.getElementById('save-config').addEventListener('click', ()=>{
+    const hours = document.getElementById('work-hours').value;
+    const days = document.getElementById('work-days').value;
+    const cfg = {hours, days};
+    localStorage.setItem('bd_config', JSON.stringify(cfg));
+    alert('Configurações salvas. (Observe que este site usa armazenamento local no seu navegador)');
+  });
+
+  document.getElementById('export-data').addEventListener('click', ()=>{
+    const data = {barbers:getBarbers(),bookings:getBookings(),config:JSON.parse(localStorage.getItem('bd_config')||'{}')};
+    const blob = new Blob([JSON.stringify(data, null,2)],{type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download='barbearia_data.json'; a.click();
+  });
+
+  document.getElementById('import-data').addEventListener('click', ()=>{
+    const f = document.getElementById('import-file').files[0];
+    if(!f){ alert('Selecione um arquivo JSON'); return; }
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try{
+        const data = JSON.parse(e.target.result);
+        if(data.barbers) localStorage.setItem('bd_barbers', JSON.stringify(data.barbers));
+        if(data.bookings) localStorage.setItem('bd_bookings', JSON.stringify(data.bookings));
+        if(data.config) localStorage.setItem('bd_config', JSON.stringify(data.config));
+        alert('Dados importados com sucesso.')
+      }catch(err){ alert('Arquivo inválido'); }
+    };
+    reader.readAsText(f);
+  });
+
+})();
+</script>
+</body>
+</html>
