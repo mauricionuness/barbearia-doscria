@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia dos Cria | Corte, Barba e Estilo desde 2021</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <a href="https://wa.me/5531990819093" target="_blank" class="whatsapp-float" title="Fale Conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-cut"></i> <h1>Barbearia dos Cria</h1>
+            </div>
+            <nav id="nav-menu">
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#planos">Planos</a>
+                <a href="#agendamento">Agendar</a>
+                <a href="#localizacao">Local</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Estilo e Tradição</h2>
+            <p>Seu visual de respeito, criado por quem entende. Desde 2021, transformando clientes em Crias de sucesso.</p>
+            <a href="#agendamento" class="btn btn-primary">Agende seu Horário Agora</a>
+        </div>
+    </section>
+
+    <section id="servicos" class="section-pad">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <p class="subtitle">Qualidade e excelência em cada detalhe do seu corte e barba.</p>
+            <div class="grid-servicos">
+                <table>
+                    <thead>
+                        <tr><th>Serviço</th><th>Preço</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Corte</td><td>R$ 25,00</td></tr>
+                        <tr><td>Barba</td><td>R$ 20,00</td></tr>
+                        <tr><td>Sobrancelha</td><td>R$ 10,00</td></tr>
+                        <tr><td>Pezinho</td><td>R$ 10,00</td></tr>
+                        <tr><td>Bigode</td><td>R$ 5,00</td></tr>
+                        <tr><td>Cavanhaque</td><td>R$ 15,00</td></tr>
+                        <tr><td>Freestyle</td><td>R$ 10,00</td></tr>
+                        <tr><td>Nevou</td><td>R$ 80,00</td></tr>
+                        <tr><td>Luzes</td><td>R$ 65,00</td></tr>
+                        <tr><td>Reflexo</td><td>R$ 80,00</td></tr>
+                        <tr><td>Tintura</td><td>R$ 25,00</td></tr>
+                        <tr><td>Colorido</td><td>R$ 70,00</td></tr>
+                        <tr><td>Pigmentação</td><td>R$ 10,00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="planos" class="section-pad bg-dark">
+        <div class="container">
+            <h2>Planos Mensais</h2>
+            <p class="subtitle">Economia e praticidade para quem faz questão de estar sempre no estilo.</p>
+            <div class="grid-planos">
+                <div class="card-plano">
+                    <h3>Plano Corte</h3>
+                    <p class="preco">R$ 100,00</p>
+                    <ul>
+                        <li>Corte Ilimitado Mensal</li>
+                    </ul>
+                </div>
+                <div class="card-plano">
+                    <h3>Plano Completo</h3>
+                    <p class="preco">R$ 150,00</p>
+                    <ul>
+                        <li>Corte Ilimitado Mensal</li>
+                        <li>Barba Inclusa</li>
+                        <li>Sobrancelha Inclusa</li>
+                    </ul>
+                </div>
+                <div class="card-plano">
+                    <h3>Plano Estilo</h3>
+                    <p class="preco">R$ 120,00</p>
+                    <ul>
+                        <li>Corte Ilimitado Mensal</li>
+                        <li>Sobrancelha Inclusa</li>
+                        <li>Pigmentação Inclusa</li>
+                    </ul>
+                </div>
+                <div class="card-plano">
+                    <h3>Plano Básico</h3>
+                    <p class="preco">R$ 110,00</p>
+                    <ul>
+                        <li>Corte Ilimitado Mensal</li>
+                        <li>Sobrancelha Inclusa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agendamento" class="section-pad">
+        <div class="container text-center">
+            <h2>Agendamento Online</h2>
+            <p class="subtitle">Agende seu horário abaixo de forma rápida e fácil, sem precisar mandar mensagem!</p>
+            
+            <div class="widget-agendamento">
+                <p><strong>[Atenção: Área de Integração do Agendamento]</strong></p>
+                <p>Aqui você deve COPIAR E COLAR o código HTML/SCRIPT do seu sistema de agendamento preferido (ex: Calendly, Square Appointments, SuperAgendador etc.).</p>
+                <div style="height: 600px; background-color: #f0f0f0; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; color: #555;">
+                    SEU WIDGET DE AGENDAMENTO AQUI
+                </div>
+            </div>
+
+            <p class="contact-info mt-4">Em caso de dúvidas sobre serviços ou horários, <a href="https://wa.me/5531990819093" target="_blank">fale conosco pelo WhatsApp (31) 99081‑9093</a>.</p>
+        </div>
+    </section>
+
+    <section id="localizacao" class="section-pad bg-dark">
+        <div class="container">
+            <h2>Onde Nos Encontrar</h2>
+            <p class="subtitle">Venha nos visitar. Estamos na Região Tupi!</p>
+            <div class="local-content">
+                <div class="mapa-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.370502123769!2d-43.94580458567115!3d-19.95751214376378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa69d51f2e6e3f3d%3A0x6b77b9d5c4b1a4f0!2sRua%20Jos%C3%A9%20Lins%20do%20R%C3%AAgo%2C%201049%20-%20Tupi%2C%20Belo%20Horizonte%20-%20MG%2C%2031842-350!5e0!3m2!1spt-BR!2sbr!4v1633544000000!5m2!1spt-BR!2sbr"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p class="endereco">Rua José Lins do Rêgo, 1049 - Tupi, Belo Horizonte - MG, 31842-350</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-info">
+                <h3>Barbearia dos Cria</h3>
+                <p>Desde 2021, transformando o seu estilo.</p>
+                <p>Local: Rua José Lins do Rêgo, 1049 - Tupi</p>
+                <p>CEP: 31842-350</p>
+            </div>
+            <div class="footer-contact">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone-alt"></i> WhatsApp: <a href="https://wa.me/5531990819093" target="_blank">(31) 99081‑9093</a></p>
+            </div>
+            <div class="footer-social">
+                <h3>Nossos Barbeiros e Redes</h3>
+                <a href="#" target="_blank" class="social-icon" title="Instagram da Barbearia">
+                    <i class="fab fa-instagram"></i> Barbeiros & Instagram
+                </a>
+                <p class="small-text">Adicione aqui o link e o nome dos Barbeiros.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Barbearia dos Cria. Todos os direitos reservados. Site desenvolvido para hospedagem gratuita.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
